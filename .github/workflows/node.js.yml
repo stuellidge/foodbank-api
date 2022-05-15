@@ -11,6 +11,7 @@ on:
     
 env:
   APP_KEY: ${{ secrets.APP_KEY }}
+  DRIVE_DISK: local
 
 jobs:
   build:
