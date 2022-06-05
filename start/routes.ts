@@ -20,12 +20,11 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/', async () => {
-  return { hello: 'world' }
-})
+Route.group(() => {
+  Route.get('/', async () => {
+    return { hello: 'world' }
+  }),
+  Route.post('logout', 'Auth.logout')
+}).middleware('auth')
 
-Route.post('login', async ({ auth, request }) => {
-  const email = request.input('email')
-  const password = request.input('password')
-  await auth.use('web').attempt(email, password)
-})
+Route.post('login', 'Auth.login')
